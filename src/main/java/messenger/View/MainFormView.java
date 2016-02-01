@@ -1,6 +1,6 @@
 package messenger.View;
 
-
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,10 +18,17 @@ public class MainFormView {
             stage.setTitle("NC Messenger - Client");
             stage.setScene(new Scene(root1));
             stage.show();
+
+            stage.setOnCloseRequest(we -> {
+                Platform.exit();
+                System.exit(0);
+            });
             return true;
         } catch (Exception e) {
             log.error("In showMainForm()-", e);
             return false;
         }
+
+
     }
 }
