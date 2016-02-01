@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import messenger.Model.ClientConnect;
 import messenger.View.MainFormView;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,9 @@ public class ConnectController {
     @FXML
     protected TextField userNameTextField;
 
+    private ClientConnect cc;
+    private Thread cct;
+
     protected static String userName;
 
     protected static ObservableList<String> users = FXCollections.observableArrayList();
@@ -33,6 +37,9 @@ public class ConnectController {
 
     @FXML
     private void onConnectButoonClick(){
+        cc = new ClientConnect(userNameTextField.getText());
+        cct = new Thread(cc);
+        cct.start();
         log.info("Opening main form");
         Stage stage = (Stage) connectButton.getScene().getWindow();
         stage.close();
@@ -45,5 +52,7 @@ public class ConnectController {
         MainFormView.showMainForm();
 
     }
+
+
 
 }
