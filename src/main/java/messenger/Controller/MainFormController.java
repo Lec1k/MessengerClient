@@ -23,7 +23,6 @@ public class MainFormController implements Initializable {
     private Button sendButton;
     @FXML
     private Button clearButton;
-
     @FXML
     private TextArea chatTextArea;
     @FXML
@@ -50,7 +49,6 @@ public class MainFormController implements Initializable {
     private void initialize() {
 
     }
-
 
     @FXML
     private void leftTextArea(MouseEvent event) {
