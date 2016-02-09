@@ -9,7 +9,7 @@ public class ClientSetting {
     public static Button clearButton;
     public static TextArea chatTextArea;
     public static TextArea onlineUsersTextArea;
-    public static TextArea MessageTextArea;
+    public static TextArea messageTextArea;
     public static ObservableList observableList;
     public static TextField nickTextField;
 }

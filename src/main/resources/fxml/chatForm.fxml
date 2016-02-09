@@ -11,13 +11,13 @@
                 <Button fx:id="sendButton" layoutX="427.0" layoutY="278.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="160.0" text="Send" />
                 <Label layoutX="427.0" layoutY="24.0" text="Online Users:" />
                 <TextArea fx:id="chatTextArea" editable="false" layoutX="14.0" layoutY="50.0" prefHeight="211.0" prefWidth="400.0" wrapText="true" />
-                <TextArea fx:id="MessageTextArea" layoutX="14.0" layoutY="276.0" prefHeight="107.0" prefWidth="400.0" />
+                <TextArea fx:id="messageTextArea" layoutX="14.0" layoutY="276.0" prefHeight="107.0" prefWidth="400.0" />
                 <TextArea fx:id="onlineUsersTextArea" editable="false" layoutX="427.0" layoutY="50.0" prefHeight="211.0" prefWidth="160.0" />
                 <Button fx:id="disconnectButton" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#onDisconnectButtonClick" text="Disconnect" />
                 <Button fx:id="clearButton" layoutX="102.0" layoutY="12.0" mnemonicParsing="false" onAction="#clearMessage" text="Clear" />
             <Accordion fx:id="connectionWindow" layoutX="130.0" layoutY="113.0" prefHeight="202.0" prefWidth="312.0">
               <panes>
-                <TitledPane text="Click Here to Connect!">
+                <TitledPane fx:id="titledPane" text="Click Here to Connect!">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>

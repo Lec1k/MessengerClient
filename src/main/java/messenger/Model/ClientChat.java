@@ -2,7 +2,6 @@ package messenger.Model;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -52,8 +51,8 @@ public class ClientChat implements Runnable {
                     ClientSetting.sendButton.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            String message = ClientSetting.MessageTextArea.getText().trim();
-                            ClientSetting.MessageTextArea.setText("");
+                            String message = ClientSetting.messageTextArea.getText().trim();
+                            ClientSetting.messageTextArea.setText("");
                             try {
                                 dos.writeUTF(message);
 
@@ -65,7 +64,7 @@ public class ClientChat implements Runnable {
 
                 }
             } catch (Exception ex) {
-                ClientSetting.chatTextArea.appendText("The server has been switched off.Please reopen this application.");
+                ClientSetting.chatTextArea.appendText("Please reopen this application.");
                 ClientSetting.sendButton.setDisable(true);
             }
 
@@ -84,8 +83,19 @@ public class ClientChat implements Runnable {
             dis = new DataInputStream(socket.getInputStream());
             dos = new DataOutputStream(socket.getOutputStream());
         } catch (Exception e) {
-            ClientSetting.chatTextArea.appendText("Server Authentication Failed Please Try to login again\n");
+            ClientSetting.chatTextArea.appendText("Server authentication failed, please reopen this application\n");
         }
         ClientChatMain();
+    }
+
+    public  void disconnect() {
+        try {
+            socket.close();
+            dis.close();
+            dos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

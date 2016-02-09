@@ -25,7 +25,7 @@ public class ClientController implements Initializable {
     @FXML
     private TextArea onlineUsersTextArea;
     @FXML
-    private TextArea MessageTextArea;
+    private TextArea messageTextArea;
     @FXML
     private TextField nickTextField;
     @FXML
@@ -37,12 +37,13 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         ClientSetting.disconnectButton = disconnectButton;
         ClientSetting.sendButton = sendButton;
         ClientSetting.clearButton = clearButton;
         ClientSetting.chatTextArea = chatTextArea;
         ClientSetting.onlineUsersTextArea = onlineUsersTextArea;
-        ClientSetting.MessageTextArea = MessageTextArea;
+        ClientSetting.messageTextArea = messageTextArea;
         ClientSetting.observableList = observableList;
         ClientSetting.nickTextField = nickTextField;
 
@@ -72,6 +73,12 @@ public class ClientController implements Initializable {
 
     @FXML
     private void onDisconnectButtonClick(ActionEvent event) {
+        nickName.interrupt();
+        nickName=null;
+        clientNickNameObject.disconnect();
+        messageTextArea.appendText("Disconnected");
+        messageTextArea.setEditable(false);
+
     }
 
     @FXML
