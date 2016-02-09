@@ -35,12 +35,12 @@ public class ClientChat implements Runnable {
                     if (reply1.isEmpty()) {
                         ClientSetting.chatTextArea.appendText("Client  is empty" + reply1 + "\n");
                     } else {
-                        if (reply1.startsWith("pase2347")) {
-
-                            String usersx[] = reply1.replace("pase2347", "").split(",");
-                            for (int a = 0; a < usersx.length; a++) {
-                                LOG.info(usersx[a]);
-                                ClientSetting.observableList.add(usersx[a]);
+                        if (reply1.startsWith("oNL1n3")) {
+                            ClientSetting.onlineUsersTextArea.setText("");
+                            String onlineUsers[] = reply1.replace("oNL1n3", "").split(",");
+                            for (int i = 0; i < onlineUsers.length; i++) {
+                                ClientSetting.onlineUsersTextArea.appendText(onlineUsers[i] + "\n");
+                                ClientSetting.observableList.add(onlineUsers[i]);
                             }
 
                         } else {
@@ -78,6 +78,7 @@ public class ClientChat implements Runnable {
         }
 
     }
+
 
     @Override
     public void run() {
