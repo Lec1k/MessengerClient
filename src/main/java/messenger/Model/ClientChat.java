@@ -2,15 +2,16 @@ package messenger.Model;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import org.slf4j.LoggerFactory;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class ClientChat implements Runnable {
-
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(ClientChat.class);
     Socket socket = null;
     DataInputStream dis = null;
     DataOutputStream dos = null;
@@ -38,13 +39,14 @@ public class ClientChat implements Runnable {
 
                             String usersx[] = reply1.replace("pase2347", "").split(",");
                             for (int a = 0; a < usersx.length; a++) {
-                                System.err.println(usersx[a]);
+                                LOG.info(usersx[a]);
                                 ClientSetting.observableList.add(usersx[a]);
                             }
 
                         } else {
                             ClientSetting.chatTextArea.appendText(reply1 + "\n");
-                            System.out.println("###" + reply1);
+                            LOG.info("###" + reply1);
+
                         }
                     }
 
@@ -57,7 +59,7 @@ public class ClientChat implements Runnable {
                                 dos.writeUTF(message);
 
                             } catch (IOException ex) {
-                                Logger.getLogger(ClientChat.class.getName()).log(Level.SEVERE, null, ex);
+                                LOG.warn("In on SendButton click-" + ex);
                             }
                         }
                     });
@@ -66,10 +68,12 @@ public class ClientChat implements Runnable {
             } catch (Exception ex) {
                 ClientSetting.chatTextArea.appendText("Please reopen this application.");
                 ClientSetting.sendButton.setDisable(true);
+                LOG.info("Please reopen this application.");
             }
 
         } catch (Exception ex) {
             ClientSetting.chatTextArea.appendText("Server Connection error\n");
+            LOG.info("Server Connection error.");
 
         }
 
@@ -88,13 +92,13 @@ public class ClientChat implements Runnable {
         ClientChatMain();
     }
 
-    public  void disconnect() {
+    public void disconnect() {
         try {
             socket.close();
             dis.close();
             dos.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.warn("In disconnect()- " + e);
         }
 
     }

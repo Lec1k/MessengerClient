@@ -8,12 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import messenger.Model.ClientChat;
 import messenger.Model.ClientSetting;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ClientController implements Initializable {
-
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(ClientController.class);
     @FXML
     private Button disconnectButton;
     @FXML
@@ -57,7 +58,7 @@ public class ClientController implements Initializable {
         if ((nick.length() == 0) && (nick.equals(""))) {
             nick = "User" + (char) Math.random() * 100;
         } else {
-            System.err.println("IP Address is: " + ipAddress + "\n" + "Username is: " + nick);
+            LOG.info("IP Address is: " + ipAddress + "\n" + "Username is: " + nick);
         }
         connectionWindow.setVisible(false);
         clientNickNameObject = new ClientChat(ipAddress, nick);
@@ -69,19 +70,18 @@ public class ClientController implements Initializable {
     @FXML
     private void clearMessage(ActionEvent event) {
         ClientSetting.chatTextArea.clear();
+        LOG.info("ChatTextAera is clean");
     }
 
     @FXML
     private void onDisconnectButtonClick(ActionEvent event) {
         nickName.interrupt();
-        nickName=null;
+        nickName = null;
         clientNickNameObject.disconnect();
-        messageTextArea.appendText("Disconnected");
-        messageTextArea.setEditable(false);
+        ClientSetting.messageTextArea.appendText("Disconnected");
+        ClientSetting.messageTextArea.setEditable(false);
+        LOG.info("Disconnected by user");
 
     }
 
-    @FXML
-    private void onClearButtonClick(ActionEvent event) {
-    }
 }
