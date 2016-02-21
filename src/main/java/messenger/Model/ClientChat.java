@@ -54,12 +54,14 @@ public class ClientChat implements Runnable {
                         @Override
                         public void handle(ActionEvent event) {
                             String message = ClientSetting.messageTextArea.getText().trim();
-                            ClientSetting.messageTextArea.setText("");
-                            try {
-                                dos.writeUTF(message);
+                            if(!message.equals("")) {
+                                ClientSetting.messageTextArea.setText("");
+                                try {
+                                    dos.writeUTF(message);
 
-                            } catch (IOException ex) {
-                                LOG.warn("In on SendButton click-" + ex);
+                                } catch (IOException ex) {
+                                    LOG.warn("In on SendButton click-" + ex);
+                                }
                             }
                         }
                     });
