@@ -12,4 +12,5 @@ public class ClientSetting {
     public static TextArea messageTextArea;
     public static ObservableList observableList;
     public static TextField nickTextField;
+
 }
