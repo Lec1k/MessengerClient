@@ -36,6 +36,7 @@ public class ClientController implements Initializable {
     private Thread nickName;
     private ObservableList observableList = FXCollections.observableArrayList();
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -47,7 +48,7 @@ public class ClientController implements Initializable {
         ClientSetting.messageTextArea = messageTextArea;
         ClientSetting.observableList = observableList;
         ClientSetting.nickTextField = nickTextField;
-
+        ClientSetting.messageTextArea.setWrapText(true);
     }
 
     @FXML
