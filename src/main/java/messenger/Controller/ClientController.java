@@ -56,7 +56,7 @@ public class ClientController implements Initializable {
         String ipAddress = "127.0.0.1";
         String nick = nickTextField.getText().trim();
         if ((nick.length() == 0) && (nick.equals(""))) {
-            nick = "User" + (char) Math.random() * 100;
+            nick = "User" + (float) Math.random() * 5;
         } else {
             LOG.info("IP Address is: " + ipAddress + "\n" + "Username is: " + nick);
         }
@@ -75,12 +75,15 @@ public class ClientController implements Initializable {
 
     @FXML
     private void onDisconnectButtonClick(ActionEvent event) {
-        nickName.interrupt();
-        nickName = null;
-        clientNickNameObject.disconnect();
-        ClientSetting.messageTextArea.appendText("Disconnected");
-        ClientSetting.messageTextArea.setEditable(false);
-        LOG.info("Disconnected by user");
+        if (nickName!=null) {
+            nickName.interrupt();
+            nickName = null;
+            clientNickNameObject.disconnect();
+            ClientSetting.messageTextArea.appendText("Disconnected");
+            ClientSetting.messageTextArea.setEditable(false);
+            LOG.info("Disconnected by user");
+        }
+
 
     }
 
